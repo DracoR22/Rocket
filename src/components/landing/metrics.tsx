@@ -6,9 +6,9 @@ import { useScroll, useTransform, useSpring, motion } from 'framer-motion'
 import { AnimatedTitle } from '@/components/motion/animated-title'
 import { MetricsItem } from './metrics-item'
 import { FaceOneIcon } from '@/components/global/icons/face-one-icon'
-import { FaceThreeIcon } from '../../../components/global/icons/face-three-icon'
-import { FaceFourIcon } from '../../../components/global/icons/face-four-icon'
-import { FaceTwoIcon } from '../../../components/global/icons/face-two-icon'
+import { FaceThreeIcon } from '../global/icons/face-three-icon'
+import { FaceFourIcon } from '../global/icons/face-four-icon'
+import { FaceTwoIcon } from '../global/icons/face-two-icon'
 
 export function Metrics({ children }: PropsWithChildren) {
   const ref = useRef<HTMLUListElement>(null)

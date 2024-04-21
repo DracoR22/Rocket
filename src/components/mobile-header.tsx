@@ -1,5 +1,5 @@
 import React from 'react'
-import { MobileSidebar } from './mobile-sidebar'
+import { MobileSidebar } from './sidebar/mobile-sidebar'
 
 const MobileHeader = () => {
   return (

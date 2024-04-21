@@ -27,7 +27,7 @@ const buttonVariants = cva(
           'bg-green-500/15 text-green-500 border-2 border-b-4 border-green-500/80 hover:bg-green-500/20',
         incorrect:
           'bg-destructive/15 text-destructive border-2 border-b-4 border-destructive/80 hover:bg-destructive/20',
-        sidebar: "bg-transparent text-slate-500 border-2 border-transparent hover:bg-slate-100 transition-none",
+        sidebar: "bg-transparent text-slate-500 border-2 border-transparent hover:bg-slate-100 dark:hover:bg-slate-900  transition-none",
         sidebarOutline: "bg-sky-500/15 text-sky-500 border-sky-300 border-2 hover:bg-sky-500/20 transition-none"
       },
       size: {

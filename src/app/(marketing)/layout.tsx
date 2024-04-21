@@ -1,5 +1,5 @@
-import { Footer } from "./_components/footer"
-import { Header } from "./_components/header"
+import { Footer } from "../../components/landing/footer"
+import { Header } from "../../components/landing/header"
 
 type Props = {
     children: React.ReactNode
