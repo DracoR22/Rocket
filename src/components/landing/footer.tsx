@@ -76,7 +76,7 @@ export function Footer() {
         </div>
       </MotionDiv>
       <p className="text-center max-sm:text-sm">
-        © 2024 — Rocket UI Code made by{' '}
+        © 2024 — Rocket Landing page made by{' '}
         <a
           href="https://github.com/elitenoire"
           target="_blank"

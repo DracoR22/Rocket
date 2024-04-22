@@ -6,6 +6,7 @@ import { fonts } from '@/styles/fonts'
 import { sharedMetadata } from '@/config/metadata'
 
 import "@/styles/globals.css";
+import { Toaster } from "@/components/ui/sonner";
 
 
 
@@ -30,6 +31,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${fonts} flex min-h-screen flex-col font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
+          <Toaster/>
           {children}
         </ThemeProvider>
       </body>
