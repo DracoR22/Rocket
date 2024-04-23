@@ -49,12 +49,12 @@ export const challenges = pgTable("challenges", {
 });
 
 export const challengesRelations = relations(challenges, ({ one, many }) => ({
-  lesson: one(lessons, {            // Cada reto pertenece a una sola lección
+  lesson: one(lessons, {          
     fields: [challenges.lessonId],
     references: [lessons.id],
   }),
-  challengeOptions: many(challengeOptions),   // Cada reto tendrá muchas opciones
-  challengeProgress: many(challengeProgress), // Cada reto tendrá muchas progresiones 
+  challengeOptions: many(challengeOptions), 
+  challengeProgress: many(challengeProgress), 
 }));
 
 export const challengeOptions = pgTable("challenge_options", {
