@@ -19,8 +19,9 @@ const UnitBanner = ({ description, title }: Props) => {
         </p>
        </div>
        <Link href={'/lesson'}>
-         <Button>
-            <NotebookTextIcon/>
+         <Button size={'lg'} variant={'secondary'} className="hidden text-white lg:flex border-2 border-b-4 active:border-b-2">
+            <NotebookTextIcon className="mr-2"/>
+            Continue
          </Button>
        </Link>
     </div>

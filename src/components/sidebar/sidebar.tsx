@@ -33,13 +33,14 @@ const Sidebar = ({ className }: Props) => {
            <Loader2Icon className="h-5 w-5 text-muted-foreground animate-spin"/>
          </ClerkLoading>
          <ClerkLoaded>
-          <div className="">
-          <Button variant="ghost" size="icon" className="text-2xl mb-4" asChild>
+          <div className="flex items-center justify-between">
+          <div >
+          <UserButton/>
+          </div>
+          <Button variant="ghost" size="icon" className="text-2xl" asChild>
             <ThemeToggle idPrefix="web" />
           </Button>
-          <div className="ml-1">
-          <UserButton />
-          </div>
+         
           </div>
          </ClerkLoaded>
       </div>
