@@ -7,6 +7,7 @@ import { sharedMetadata } from '@/config/metadata'
 
 import "@/styles/globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import ExitModal from "@/components/modals/exit-modal";
 
 
 
@@ -32,6 +33,7 @@ export default function RootLayout({
       <body className={`${fonts} flex min-h-screen flex-col font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
           <Toaster/>
+          <ExitModal/>
           {children}
         </ThemeProvider>
       </body>

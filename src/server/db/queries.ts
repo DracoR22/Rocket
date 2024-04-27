@@ -23,45 +23,62 @@ export const getUserProgress = cache(async () => {
 })
 
 export const getUnits = cache(async () => {
-    const { userId } = await auth()
-    const userProgress = await getUserProgress()
-
+    const { userId } = await auth();
+    const userProgress = await getUserProgress();
+  
     if (!userId || !userProgress?.activeCourseId) {
-        return []
+      return [];
     }
-
-    // TODO: confirm whether order is needed
+  
     const data = await db.query.units.findMany({
-        where: eq(units.courseId, userProgress.activeCourseId),
-        with: {
-            lessons: {
-                with: {
-                   challenges: {
-                    with: {
-                        challengeProgress: {
-                            where: eq(challengeProgress.userId, userId)
-                        }
-                    }
-                   }
-                }
-            }
+      orderBy: (units, { asc }) => [asc(units.order)],
+      where: eq(units.courseId, userProgress.activeCourseId),  // Se buscan las units que satisfagan units.courseId con userProgress.activeCourseId -> courseId
+      with: {
+        lessons: {
+          orderBy: (lessons, { asc }) => [asc(lessons.order)], // populate lessons
+          with: {
+            challenges: {                                      // populate challenges            
+              orderBy: (challenges, { asc }) => [asc(challenges.order)],
+              with: {
+                challengeProgress: {                           // populate challengesProgress  
+                  where: eq(
+                    challengeProgress.userId,
+                    userId,
+                  ),
+                },
+              },
+            },
+          },
+        },
+      },
+    });
+  
+    const normalizedData = data.map((unit) => {                             // Iteramos sobre las units -> unit
+  
+      const lessonsWithCompletedStatus = unit.lessons.map((lesson) => {     // Iteramos sobre las lessons de cada unit
+        if (
+          lesson.challenges.length === 0                                    // Si la lección no tiene desafios 
+        ) {
+          return { ...lesson, completed: false };                           // se considerará como no completada
         }
-    })
-
-    const normalizedData = data.map((unit) => {
-        const lessonsWithCompletedStatus = unit.lessons.map((lesson) => {
-            const allCompletedChallenges = lesson.challenges.every((challenge) => {
-                return challenge.challengeProgress && challenge.challengeProgress.length > 0 && challenge.challengeProgress.every((progress) => progress.completed)
-            })
-
-            return { ...lesson, completed: allCompletedChallenges }
-        })
-
-        return { ...unit, lessons: lessonsWithCompletedStatus }
-    })
-
-    return normalizedData
-})
+  
+        const allCompletedChallenges = lesson.challenges.every((challenge) => { // Si si tiene desafios iteramos los desafios -> challenge
+          return challenge.challengeProgress                                        // debe existir algún progreso registrado 
+            && challenge.challengeProgress.length > 0                               // y tener almenos un registro  
+            && challenge.challengeProgress.every((progress) => progress.completed); // ademas de tener la prop completed=true
+        });                                                                     // every devolverá true si cada challenge tiene prog registrado y con la prop completed
+  
+        return { ...lesson, completed: allCompletedChallenges }; // Actualización de la estructura de lesson
+      });
+  
+      return { ...unit, lessons: lessonsWithCompletedStatus }; // Actualización de la estructura de unit
+    });
+  
+    return normalizedData;
+  
+  });
+  
+  
 
 export const getCourses = cache(async () => {
     const data = await db.query.courses.findMany()

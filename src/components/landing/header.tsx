@@ -17,7 +17,7 @@ export const Header = () => {
       <div className="z-1 flex w-full items-center justify-between gap-2 overflow-hidden px-2 sm:px-8">
         <div className="flex flex-1 items-center justify-start gap-1 max-sm:hidden">
           <Button variant="ghost" size="icon" asChild>
-            <a href="https://github.com/elitenoire/trylingo" target="_blank" aria-label="GitHub repo"  title="Github repo">
+            <a href="https://github.com/DracoR22/Rocket" target="_blank" aria-label="GitHub repo"  title="Github repo">
             <span className="size-6">
             <GithubIcon/>
             </span>

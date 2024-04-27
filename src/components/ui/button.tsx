@@ -18,6 +18,7 @@ const buttonVariants = cva(
           'bg-secondary text-secondary-foreground border-b-4 border-secondary-depth hover:bg-secondary/90 active:border-b-0',
         danger:
           'bg-destructive text-destructive-foreground border-b-4 border-destructive-depth hover:bg-destructive/90 active:border-b-0',
+        dangerOutline: "bg-background text-rose-500 hover:bg-slate-100 dark:hover:bg-slate-900",
         super:
           'bg-super text-super-foreground border-b-4 border-super-depth hover:bg-super/90 active:border-b-0',
 
