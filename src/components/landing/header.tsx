@@ -1,6 +1,6 @@
 'use client'
 
-import { ClerkLoaded, ClerkLoading, SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
+import { ClerkLoaded, ClerkLoading, SignIn, SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
 import Image from "next/image"
 import { Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -43,7 +43,9 @@ export const Header = () => {
         </MotionDiv>
         <div className="flex flex-1 items-center justify-end">
           <SignedOut>
-            <Button variant="ghost">Login</Button>
+            <SignInButton mode="modal" afterSignInUrl="/learn" afterSignUpUrl="/learn">
+              <Button variant="ghost">Login</Button>
+            </SignInButton>
           </SignedOut>
           <SignedIn>
             <UserButton/>

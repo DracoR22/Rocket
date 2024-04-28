@@ -42,7 +42,7 @@ const LessonButton = ({ id, index, percentage, totalCount, current, locked }: Pr
 
   const Icon = isCompleted ? CheckIcon : isLast ? CrownIcon : StarIcon
 
-  const href = isCompleted ? `/lesson/${id}` : '/lesson'
+  const href = isCompleted ? { pathname: `/lesson/${id}` } : { pathname: '/lesson' };
 
   return (
     <Link href={href} aria-disabled={locked} style={{ pointerEvents: locked ? 'none' : 'auto' }}>
