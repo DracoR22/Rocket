@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Nunito } from "next/font/google";
+import { Gabarito, Nunito } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ClerkProvider } from '@clerk/nextjs'
 import { fonts } from '@/styles/fonts'
@@ -10,6 +10,8 @@ import { Toaster } from "@/components/ui/sonner";
 import ExitModal from "@/components/modals/exit-modal";
 import HeartsModal from "@/components/modals/hearts-modal";
 import PracticeModal from "@/components/modals/practice-modal";
+
+
 
 export const metadata: Metadata = {
   ...sharedMetadata,
