@@ -54,25 +54,25 @@ export const getUnits = cache(async () => {
       },
     });
   
-    const normalizedData = data.map((unit) => {                             // Iteramos sobre las units -> unit
+    const normalizedData = data.map((unit) => {                
   
-      const lessonsWithCompletedStatus = unit.lessons.map((lesson) => {     // Iteramos sobre las lessons de cada unit
+      const lessonsWithCompletedStatus = unit.lessons.map((lesson) => {    
         if (
-          lesson.challenges.length === 0                                    // Si la lección no tiene desafios 
+          lesson.challenges.length === 0                                 
         ) {
-          return { ...lesson, completed: false };                           // se considerará como no completada
+          return { ...lesson, completed: false };                          
         }
   
-        const allCompletedChallenges = lesson.challenges.every((challenge) => { // Si si tiene desafios iteramos los desafios -> challenge
-          return challenge.challengeProgress                                        // debe existir algún progreso registrado 
-            && challenge.challengeProgress.length > 0                               // y tener almenos un registro  
-            && challenge.challengeProgress.every((progress) => progress.completed); // ademas de tener la prop completed=true
-        });                                                                     // every devolverá true si cada challenge tiene prog registrado y con la prop completed
+        const allCompletedChallenges = lesson.challenges.every((challenge) => {
+          return challenge.challengeProgress                                      
+            && challenge.challengeProgress.length > 0                      
+            && challenge.challengeProgress.every((progress) => progress.completed); 
+        });                                                                     
   
-        return { ...lesson, completed: allCompletedChallenges }; // Actualización de la estructura de lesson
+        return { ...lesson, completed: allCompletedChallenges }; 
       });
   
-      return { ...unit, lessons: lessonsWithCompletedStatus }; // Actualización de la estructura de unit
+      return { ...unit, lessons: lessonsWithCompletedStatus }; 
     });
   
     return normalizedData;
@@ -227,3 +227,25 @@ export const getUserSubscription = cache(async () => {
         isActive: !!isActive
     }
 }) 
+
+export const getTopTenUsers = cache(async () => {
+
+    const { userId } = await auth()
+
+    if (!userId) {
+        return []
+    }
+
+    const data = await db.query.userProgress.findMany({
+        orderBy: (userProgress, { desc }) => [desc(userProgress.points)],
+        limit: 10,
+        columns: {
+            userId: true,
+            userImageSrc: true,
+            userName: true,
+            points: true
+        }
+    })
+
+    return data
+})

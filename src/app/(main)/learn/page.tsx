@@ -6,6 +6,8 @@ import { getCourseProgress, getLessonPercentage, getUnits, getUserProgress, getU
 import { redirect } from "next/navigation"
 import Unit from "@/components/learn/unit"
 import { lessons, units as unitsSchema } from "@/server/db/schema"
+import Promo from "@/components/promo"
+import Quests from "@/components/quests"
 
 const LearnPage = async () => {
 
@@ -25,10 +27,16 @@ const LearnPage = async () => {
     redirect('/courses')
   }
 
+  const isPro = !!userSubscription?.isActive
+
   return (
     <div className="flex flex-row-reverse gap-[48px] px-6">
       <StickyWrapper>
-        <UserProgress activeCourse={userProgress.activeCourse} hearts={userProgress.hearts} points={userProgress.points} hasActiveSubscription={!!userSubscription?.isActive}/>
+        <UserProgress activeCourse={userProgress.activeCourse} hearts={userProgress.hearts} points={userProgress.points} hasActiveSubscription={isPro}/>
+         {!isPro && (
+            <Promo/>
+         )}
+         <Quests points={userProgress.points}/>
       </StickyWrapper>
       <FeedWrapper>
         <Header title={userProgress.activeCourse.title}/>
