@@ -15,3 +15,7 @@ export function getMetadataRootURL() {
       return new URL(`http://localhost:${process.env.PORT || 3000}`)
   }
 }
+
+export function absoluteUrl(path: string) {             
+  return `${process.env.NEXT_PUBLIC_APP_URL}${path}`;     
+}

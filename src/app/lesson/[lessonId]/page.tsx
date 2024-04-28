@@ -2,9 +2,13 @@ import Quiz from "@/components/lesson/quiz"
 import { getLesson, getUserProgress, getUserSubscription } from "@/server/db/queries"
 import { redirect } from "next/navigation"
 
-const LessonPage = async () => {
+type Props = {
+    params: { lessonId: number }
+}
 
-  const lessonData = getLesson()
+const LessonPageId = async ({ params }: Props) => {
+
+  const lessonData = getLesson(params.lessonId)
   const userProgressData = getUserProgress()
   const userSubscriptionData = getUserSubscription()
 
@@ -21,4 +25,4 @@ const LessonPage = async () => {
   )
 }
 
-export default LessonPage
+export default LessonPageId

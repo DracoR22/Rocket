@@ -8,8 +8,8 @@ import { sharedMetadata } from '@/config/metadata'
 import "@/styles/globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import ExitModal from "@/components/modals/exit-modal";
-
-
+import HeartsModal from "@/components/modals/hearts-modal";
+import PracticeModal from "@/components/modals/practice-modal";
 
 export const metadata: Metadata = {
   ...sharedMetadata,
@@ -34,6 +34,8 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
           <Toaster/>
           <ExitModal/>
+          <HeartsModal/>
+          <PracticeModal/>
           {children}
         </ThemeProvider>
       </body>
