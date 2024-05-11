@@ -29,27 +29,27 @@ export const quests = [
       {
         id: 1,
         title: "Spanish",
-        imageSrc: "/es.svg",
+        imageSrc: "/img/flags/es.svg",
       },
       {
         id: 2,
         title: "Japanese",
-        imageSrc: "/jp.svg",
+        imageSrc: "/img/flags/jp.svg",
       },
       {
         id: 3,
         title: "French",
-        imageSrc: "/fr.svg",
+        imageSrc: "/img/flags/fr.svg",
       },
       {
         id: 4,
         title: "Croatian",
-        imageSrc: "/hr.svg",
+        imageSrc: "/img/flags/hr.svg",
       },
       {
         id: 5,
         title: "Italian",
-        imageSrc: "/it.svg",
+        imageSrc: "/img/flags/it.svg",
       },
     ],
     units: [
